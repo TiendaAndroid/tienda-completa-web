@@ -6,11 +6,18 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                // Limpiar el workspace antes de empezar
+                deleteDir()
+            }
+        }
+
         stage('Clone Repository with Submodules') {
             steps {
                 // Clonar el repositorio e inicializar los submódulos
                 sh "git clone --recurse-submodules ${env.GIT_REPO}"
-                dir('full_cards') {
+                dir('tienda-completa-web') {
                     sh 'git submodule update --init --recursive'
                 }
             }
@@ -18,17 +25,17 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                dir('full_cards') {
+                dir('tienda-completa-web') {
                     // Ejecutar pruebas antes de construir
                     sh 'docker-compose build'
-                    sh 'docker-compose run tienda-completa-web npm test' // Ajusta `app_name` al nombre adecuado
+                    sh 'docker-compose run app_name npm test' // Ajusta `app_name` al nombre adecuado
                 }
             }
         }
 
         stage('Stop Running Containers') {
             steps {
-                dir('full_cards') {
+                dir('tienda-completa-web') {
                     // Detener y eliminar los contenedores actuales
                     sh 'docker-compose down'
                 }
@@ -37,7 +44,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                dir('full_cards') {
+                dir('tienda-completa-web') {
                     // Construir imágenes Docker
                     sh 'docker-compose build'
                 }
@@ -46,7 +53,7 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                dir('full_cards') {
+                dir('tienda-completa-web') {
                     // Subir los contenedores en modo detached
                     sh 'docker-compose up -d'
                 }
@@ -63,3 +70,4 @@ pipeline {
         }
     }
 }
+
