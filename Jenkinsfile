@@ -37,7 +37,7 @@ pipeline {
                 dir('tienda-completa-web') {
                     // Construir imágenes Docker
                     sh 'docker-compose build'
-                    sh 'docker-compose -d'
+                    sh 'docker-compose up -d'
 
                 }
             }
