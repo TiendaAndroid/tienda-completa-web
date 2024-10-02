@@ -3,42 +3,32 @@ pipeline {
 
     environment {
         GIT_REPO = 'https://github.com/TiendaAndroid/tienda-completa-web.git'
-        GIT_CREDENTIALS_ID = 'Github-ssh' // Cambia esto por el ID de tus credenciales configuradas en Jenkins
     }
 
     stages {
-        stage('Clean Workspace') {
-            steps {
-                // Limpiar el workspace antes de empezar
-                deleteDir()
-            }
-        }
-
         stage('Clone Repository with Submodules') {
             steps {
-                // Clonar el repositorio e inicializar los submódulos con credenciales
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[url: env.GIT_REPO, credentialsId: env.GIT_CREDENTIALS_ID]],
-                    extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true, trackingSubmodules: false]]
-                ])
+                // Clonar el repositorio e inicializar los submódulos
+                sh "git clone --recurse-submodules ${env.GIT_REPO}"
+                dir('full_cards') {
+                    sh 'git submodule update --init --recursive'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                dir('tienda-completa-web') {
+                dir('full_cards') {
                     // Ejecutar pruebas antes de construir
                     sh 'docker-compose build'
-                    sh 'docker-compose run app_name npm test' // Ajusta `app_name` al nombre adecuado
+                    sh 'docker-compose run tienda-completa-web npm test' // Ajusta `app_name` al nombre adecuado
                 }
             }
         }
 
         stage('Stop Running Containers') {
             steps {
-                dir('tienda-completa-web') {
+                dir('full_cards') {
                     // Detener y eliminar los contenedores actuales
                     sh 'docker-compose down'
                 }
@@ -47,7 +37,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                dir('tienda-completa-web') {
+                dir('full_cards') {
                     // Construir imágenes Docker
                     sh 'docker-compose build'
                 }
@@ -56,7 +46,7 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                dir('tienda-completa-web') {
+                dir('full_cards') {
                     // Subir los contenedores en modo detached
                     sh 'docker-compose up -d'
                 }
