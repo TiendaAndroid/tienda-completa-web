@@ -27,6 +27,7 @@ pipeline {
             steps {
                 dir('tienda-completa-web') {
                     sh 'docker-compose down'
+                    sh 'docker-compose rm'
                 }
             }
         }
@@ -43,7 +44,7 @@ pipeline {
         stage('Build App') {
             steps {
                 dir('tienda-completa-web') {
-                    sh 'docker-compose -d'
+                    sh 'docker-compose up -d'
                 }
             }
         }
