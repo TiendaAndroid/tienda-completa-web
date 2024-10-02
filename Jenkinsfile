@@ -23,15 +23,6 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                dir('tienda-completa-web') {
-                    // Ejecutar pruebas antes de construir
-                    sh 'docker-compose build'
-                }
-            }
-        }
-
         stage('Stop Running Containers') {
             steps {
                 dir('tienda-completa-web') {
