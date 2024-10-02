@@ -32,13 +32,38 @@ pipeline {
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                dir('tienda-completa-web/backend-tienda') {
+                    // Instalar dependencias
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build Project') {
+            steps {
+                dir('tienda-completa-web/backend-tienda') {
+                    // Construir el proyecto
+                    sh 'npm run build'
+                }
+            }
+        }
+
         stage('Build Docker Images') {
             steps {
                 dir('tienda-completa-web') {
                     // Construir imágenes Docker
                     sh 'docker-compose build'
-                    sh 'docker-compose up -d'
+                }
+            }
+        }
 
+        stage('Run Docker Containers') {
+            steps {
+                dir('tienda-completa-web') {
+                    // Ejecutar contenedores Docker
+                    sh 'docker-compose up -d'
                 }
             }
         }
@@ -53,4 +78,3 @@ pipeline {
         }
     }
 }
-
