@@ -40,15 +40,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy to Production') {
-            steps {
-                dir('tienda-completa-web') {
-                    // Subir los contenedores en modo detached
-                    sh 'docker-compose up -d'
-                }
-            }
-        }
     }
 
     post {
