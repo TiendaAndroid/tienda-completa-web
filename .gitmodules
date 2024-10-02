@@ -1,0 +1,9 @@
+[submodule "dashboard"]
+	path = dashboard
+	url = https://github.com/TiendaAndroid/dashboard.git
+[submodule "tienda-web"]
+	path = tienda-web
+	url = https://github.com/TiendaAndroid/tienda-web.git
+[submodule "backend-tienda"]
+	path = backend-tienda
+	url = https://github.com/TiendaAndroid/backend-tienda.git
