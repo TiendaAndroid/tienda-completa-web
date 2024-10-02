@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         GIT_REPO = 'https://github.com/TiendaAndroid/tienda-completa-web.git'
+        GIT_CREDENTIALS_ID = 'Git-hub_credencials' // Cambia esto por el ID de tus credenciales configuradas en Jenkins
     }
 
     stages {
@@ -15,11 +16,13 @@ pipeline {
 
         stage('Clone Repository with Submodules') {
             steps {
-                // Clonar el repositorio e inicializar los submódulos
-                sh "git clone --recurse-submodules ${env.GIT_REPO}"
-                dir('tienda-completa-web') {
-                    sh 'git submodule update --init --recursive'
-                }
+                // Clonar el repositorio e inicializar los submódulos con credenciales
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: env.GIT_REPO, credentialsId: env.GIT_CREDENTIALS_ID]],
+                    extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true, trackingSubmodules: false]]
+                ])
             }
         }
 
@@ -70,4 +73,3 @@ pipeline {
         }
     }
 }
-
