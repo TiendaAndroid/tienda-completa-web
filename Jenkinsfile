@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_REPO = 'https://github.com/TiendaAndroid/tienda-completa-web.git'
-        GIT_CREDENTIALS_ID = 'Git-hub_credencials' // Cambia esto por el ID de tus credenciales configuradas en Jenkins
+        GIT_CREDENTIALS_ID = 'Github-ssh' // Cambia esto por el ID de tus credenciales configuradas en Jenkins
     }
 
     stages {
