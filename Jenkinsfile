@@ -40,7 +40,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Build App') {
             steps {
                 dir('tienda-completa-web') {
                     sh 'docker-compose -d'
