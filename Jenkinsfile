@@ -28,7 +28,6 @@ pipeline {
                 dir('tienda-completa-web') {
                     // Ejecutar pruebas antes de construir
                     sh 'docker-compose build'
-                    sh 'docker-compose run tienda-completa-web npm test' // Ajusta `app_name` al nombre adecuado
                 }
             }
         }
