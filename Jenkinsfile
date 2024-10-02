@@ -6,6 +6,13 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                // Limpiar el workspace antes de empezar
+                deleteDir()
+            }
+        }
+
         stage('Clone Repository with Submodules') {
             steps {
                 // Clonar el repositorio e inicializar los submódulos
@@ -63,3 +70,4 @@ pipeline {
         }
     }
 }
+
