@@ -26,26 +26,7 @@ pipeline {
         stage('Stop Running Containers') {
             steps {
                 dir('tienda-completa-web') {
-                    // Detener y eliminar los contenedores actuales
                     sh 'docker-compose down'
-                }
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                dir('tienda-completa-web/backend-tienda') {
-                    // Instalar dependencias
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('Build Project') {
-            steps {
-                dir('tienda-completa-web/backend-tienda') {
-                    // Construir el proyecto
-                    sh 'npm run build'
                 }
             }
         }
@@ -59,11 +40,10 @@ pipeline {
             }
         }
 
-        stage('Run Docker Containers') {
+        stage('Build Docker Images') {
             steps {
                 dir('tienda-completa-web') {
-                    // Ejecutar contenedores Docker
-                    sh 'docker-compose up -d'
+                    sh 'docker-compose -d'
                 }
             }
         }
@@ -78,3 +58,4 @@ pipeline {
         }
     }
 }
+
