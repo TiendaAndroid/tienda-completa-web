@@ -35,7 +35,7 @@ services:
       - ./tienda-web/src:/usr/src/app/src
     command: sh -c "npm run build && npm run start"
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://localhost:4000/api
+      - NEXT_PUBLIC_BACKEND_URL=http://62.72.0.147:4000/api
     ports:
       - 4001:3000
 
@@ -47,7 +47,7 @@ services:
       - ./dashboard/src:/usr/src/app/src
     command: sh -c "npm run build && npm run start"
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://localhost:4000/api
+      - NEXT_PUBLIC_BACKEND_URL=http://62.72.0.147:4000/api
     ports:
       - 4002:3001
 
