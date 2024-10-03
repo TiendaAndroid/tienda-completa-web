@@ -1,10 +1,10 @@
 services:
-  backend:
+  backend-zazil:
     depends_on:
       - db
     build: ./backend-tienda
     volumes:
-      - ./backend-tienda/src:/usr/src/app/src
+      - ./backend-tienda:/usr/src/app
     command: npm run start:dev
     environment:
       - DB_HOST=db

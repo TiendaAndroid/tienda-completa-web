@@ -8,14 +8,12 @@ pipeline {
     stages {
         stage('Clean Workspace') {
             steps {
-                // Limpiar el workspace antes de empezar
                 deleteDir()
             }
         }
 
         stage('Clone Repository with Submodules') {
             steps {
-                // Clonar el repositorio e inicializar los submódulos
                 sh "git clone --recurse-submodules ${env.GIT_REPO}"
                 dir('tienda-completa-web') {
                     sh 'git submodule update --init --recursive'
@@ -27,7 +25,6 @@ pipeline {
             steps {
                 dir('tienda-completa-web') {
                     sh 'docker-compose down'
-                    sh 'docker-compose rm'
                 }
             }
         }
@@ -35,7 +32,6 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 dir('tienda-completa-web') {
-                    // Construir imágenes Docker
                     sh 'docker-compose build'
                 }
             }
