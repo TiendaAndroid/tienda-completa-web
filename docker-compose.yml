@@ -1,5 +1,5 @@
 services:
-  backend-zazil:
+  backend:
     depends_on:
       - db
     build: ./backend-tienda
