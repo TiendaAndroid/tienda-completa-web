@@ -4,7 +4,7 @@ services:
       - db
     build: ./backend-tienda
     volumes:
-      - ./backend-tienda:/usr/src/app
+      - ./backend-tienda/src:/usr/src/app/src
     command: npm run start:dev
     environment:
       - DB_HOST=db
