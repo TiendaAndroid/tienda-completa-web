@@ -13,11 +13,11 @@ services:
       - DB_PASSWORD=Nano3110
       - DB_NAME=zazildb
       - STRIPE_SECRET=sk_test_51PnVUTCyP15WNurR1INxgCFO9iDcG21Zx0tSxnvtCVBsLJrHBmfCq9Jcp3NvlnhcPCEumGjGGlzuXZqntVBwGXk200bB284wL8
-      - STRIPE_SUCCESS_URL=http://localhost:3000/api/payments/success
-      - STRIPE_CANCELL_URL=http://localhost:3000/api/payments/cancel
+      - STRIPE_SUCCESS_URL=https://fabm.online/zazil_backend/api/payments/success
+      - STRIPE_CANCELL_URL=https://fabm.online/zazil_backend/api/payments/cancel
       - STRIPE_ENDPOINT_SECRET=whsec_yqNRQTGlbmXUqmLWLFy3jbkaytVYcHOr
-      - URL_FRONTEND=http://localhost:3001
-      - HOST_API=http://localhost:3000/api
+      - URL_FRONTEND=http://62.72.0.147:4001
+      - HOST_API=https://fabm.online/zazil_backend/api
       - PORT=4000
       - JWT_SECRET=5/hBU42S945kj9wWAVgh9qAkTXsdc644tR0T3KtvYRFY/w1gKyJYnTdacJLNcZPEEqFgcOoriyaWYsTNef4faN0x6o7IOoWmoW9PQOFEg4eEnFGhdzBB9LZgcGd7lIDARoZxKgsyaN35m9skeU0GwQbKaVMPIV5ehr2uTUhF4BU2WLM+9qswr67MDDBsV06PWWdc/mZUUyGvlk0f59qhVzYNsNFyKm7CRwFQiNKqkxG/JjpWQM0iQKOMnK9P0pJpK0miDHkaG380SWfR1EP05Y3VMClZG8L0pgdmQb9jov3D2xxkXpIH6sVdLycUOrsQYUNtxbKyD2SVeh+ubXH5Kg==
       - CLOUDINARY_CLOUD_NAME=dfpd4ucjw
@@ -25,7 +25,7 @@ services:
       - CLOUDINARY_API_SECRET=x_rKGFJP0B3EYwXWh-Tn-x_9MIg
       - GOOGLE_CLIENT_ID=382030593350-7u86fs41fja5hoi8uukgvak581l7719f.apps.googleusercontent.com
       - GOOGLE_CLIENT_SECRET=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
-      - GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
+      - GOOGLE_CALLBACK_URL=https://fabm.online/zazil_backend/api/auth/google/callback
     ports:
       - 4000:4000
 
