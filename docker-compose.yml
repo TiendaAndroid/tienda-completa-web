@@ -16,7 +16,7 @@ services:
       - STRIPE_SUCCESS_URL=https://fabm.online/zazil_backend/api/payments/success
       - STRIPE_CANCELL_URL=https://fabm.online/zazil_backend/api/payments/cancel
       - STRIPE_ENDPOINT_SECRET=whsec_yqNRQTGlbmXUqmLWLFy3jbkaytVYcHOr
-      - URL_FRONTEND=http://62.72.0.147:4001
+      - URL_FRONTEND=https://fabm.online/zazil/tienda-web
       - HOST_API=https://fabm.online/zazil_backend/api
       - PORT=4000
       - JWT_SECRET=5/hBU42S945kj9wWAVgh9qAkTXsdc644tR0T3KtvYRFY/w1gKyJYnTdacJLNcZPEEqFgcOoriyaWYsTNef4faN0x6o7IOoWmoW9PQOFEg4eEnFGhdzBB9LZgcGd7lIDARoZxKgsyaN35m9skeU0GwQbKaVMPIV5ehr2uTUhF4BU2WLM+9qswr67MDDBsV06PWWdc/mZUUyGvlk0f59qhVzYNsNFyKm7CRwFQiNKqkxG/JjpWQM0iQKOMnK9P0pJpK0miDHkaG380SWfR1EP05Y3VMClZG8L0pgdmQb9jov3D2xxkXpIH6sVdLycUOrsQYUNtxbKyD2SVeh+ubXH5Kg==
@@ -35,7 +35,7 @@ services:
       - ./tienda-web/src:/usr/src/app/src
     command: sh -c "npm run build && npm run start"
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://62.72.0.147:4000/zazil_backend/api
+      - NEXT_PUBLIC_BACKEND_URL=https://fabm.online/zazil_backend/api
     ports:
       - 4001:3000
 
@@ -47,7 +47,7 @@ services:
       - ./dashboard/src:/usr/src/app/src
     command: sh -c "npm run build && npm run start"
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://62.72.0.147:4000/zazil_backend/api
+      - NEXT_PUBLIC_BACKEND_URL=https://fabm.online/zazil_backend/api
     ports:
       - 4002:3001
 
